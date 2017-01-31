@@ -1,0 +1,15 @@
+{
+    "name": "phptal/issue-57",
+    "description": "Code to accompany PHPTAL issue #57",
+    "type": "project",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Ben Peachey",
+            "email": "potherca@gmail.com"
+        }
+    ],
+    "require": {
+        "phptal/phptal": "^1.3"
+    }
+}
