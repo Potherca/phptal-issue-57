@@ -11,8 +11,7 @@ $template = <<<'HTML'
     <meta charset="utf-8"/>
     <title>Example Code to demonstrate issue 57</title>
     <p>
-	<span>A Closure</span><br/>
-        <span tal:content="foo/nested"></span>
+        <span tal:content="foo"></span>
     </p>
 </html>
 HTML;
@@ -21,9 +20,9 @@ $engine = new PHPTAL();
 
 $engine->setSource($template);
 
-// Closure
+// Direct asignment
 $foo = function () {
-    return ['nested'=>'nestedfoo'];
+    return 'Foo';
 };
 
 $engine->foo = $foo;

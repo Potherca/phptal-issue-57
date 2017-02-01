@@ -11,8 +11,7 @@ $template = <<<'HTML'
     <meta charset="utf-8"/>
     <title>Example Code to demonstrate issue 57</title>
     <p>
-	<span>Not a closure</span><br/>
-        <span tal:content="foo/nested"></span>
+        <span tal:content="foo"></span>
     </p>
 </html>
 HTML;
@@ -21,10 +20,10 @@ $engine = new PHPTAL();
 
 $engine->setSource($template);
 
-//Not a closure, function is executed and result assigned.
-$engine->foo = (function () {
-    return ['nested'=>'nestedfoo'];
-})();
+// Direct asignment
+$engine->foo = function () {
+    return 'Foo';
+};
 
 try {
     $result = $engine->execute();
