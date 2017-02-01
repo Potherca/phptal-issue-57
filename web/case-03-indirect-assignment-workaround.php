@@ -11,8 +11,8 @@ $template = <<<'HTML'
     <meta charset="utf-8"/>
     <title>Example Code to demonstrate issue 57</title>
     <p>
-	<span>Not a closure</span><br/>
-        <span tal:content="foo/nested"></span>
+	<span>A Closure using repeat</span><br/>
+        <span tal:repeat="f foo" tal:content="f/nested"></span>
     </p>
 </html>
 HTML;
@@ -21,10 +21,12 @@ $engine = new PHPTAL();
 
 $engine->setSource($template);
 
-//Not a closure, function is executed and result assigned.
-$engine->foo = (function () {
-    return ['nested'=>'nestedfoo'];
-})();
+// Closure
+$foo = function () {
+    return [['nested'=>'nestedfoo']]; //extra layer needed
+};
+
+$engine->foo = $foo;
 
 try {
     $result = $engine->execute();
